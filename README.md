@@ -108,13 +108,23 @@ pip install -r requirements.txt
    - `script_id` → Paste the Deployment ID from Step 2.
    - `auth_key` → The **same password** you set in `Code.gs`.
 
-### Step 4: Run
+### 4 - Run
 
+Simply click on `start.bat` file (on windows) or `start.sh` (on linux).
+
+or if you want to run it manually:
 ```bash
 python3 main.py
 ```
 
 You should see a message saying the HTTP proxy is running on `127.0.0.1:8085`
+
+### 5 - Test your connection
+
+Open [ipleak.net](https://ipleak.net) in your browser, you should see your ip address set as cloudflare's.
+
+<img width="1454" height="869" alt="image" src="https://github.com/user-attachments/assets/dfd3316d-69b6-4b0e-b564-fdb055dbdafd" />
+
 
 
 
