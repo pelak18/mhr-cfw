@@ -2,7 +2,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-MasterHttpRelayVPN-blue?logo=github)](https://github.com/denuitt1/mhr-cfw)
 
-**This project is an edit of [MasterHttpRelayVPN](https://github.com/masterking32/MasterHttpRelayVPN)**
+[English](.) | [Persian](./README_FA.md)
 
 ## Disclaimer
 
@@ -126,7 +126,3 @@ You can use [FoxyProxy](https://getfoxyproxy.org/) [Chrome Extension](https://ch
 Open [ipleak.net](https://ipleak.net) in your browser, you should see your ip address set as cloudflare's.
 
 <img width="1454" height="869" alt="image" src="https://github.com/user-attachments/assets/dfd3316d-69b6-4b0e-b564-fdb055dbdafd" />
-
-
-
-
