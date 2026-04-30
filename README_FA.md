@@ -30,7 +30,9 @@
 - [سلب مسئولیت](#سلب-مسئولیت)
 
 ---
-### - [تلگرام ما : @Raydikalx](https://t.me/Raydikalx)
+
+Persian translation was provided by [@0xRadikal](https://github.com/0xRadikal)
+
 ---
 ## پروژه چیست؟
 
