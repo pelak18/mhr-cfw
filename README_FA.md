@@ -9,6 +9,13 @@
 
 ---
 
+### آموزش ویدیویی
+[![Watch the video](https://img.youtube.com/vi/L3lJZrAqqUQ/maxresdefault.jpg)](https://youtu.be/L3lJZrAqqUQ)
+
+لینک داخلی دانلود ویدیو: https://nc.thearthur.ir/s/YaCp4zAzepHJKi2
+
+---
+
 ## فهرست مطالب
 
 - [پروژه چیست؟](#پروژه-چیست)
@@ -31,9 +38,6 @@
 
 ---
 
-Persian translation was provided by [@0xRadikal](https://github.com/0xRadikal)
-
----
 ## پروژه چیست؟
 
 **MHR-CFW** یک پروکسی محلی است که ترافیک اینترنت شما را از طریق زیرساخت Google و Cloudflare عبور می‌دهد تا سیستم‌های DPI (بازرسی عمیق بسته) نتوانند آن را شناسایی و فیلتر کنند.
