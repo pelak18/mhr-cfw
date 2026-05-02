@@ -486,12 +486,13 @@ Port     : 1080
 
 ```json
 {
+  "script_id": null,
   "script_ids": [
-    "AKfycbzFIRSTID...",
-    "AKfycbzSECONDID...",
-    "AKfycbzTHIRDID..."
+    "AKfycbxTN7GbfPO1b29P-m_xioyQsMkyi9V3kUyIvgEFHMXuSFikobfl9cpNxxNhaHn8eEqp7Q",
+    "AKfycbx-mOF_tuCDBbCOvgzv-MpgbAQIjG67hI_XV8PGb_BlhgA-a93E7bsvNzkVZcDZwQT33Q",
+    "AKfycbzc45I65DMKDgVYqJcGLAbLxipGmCXsB7TkxJ8NQ39l-J292jEH1yuLKmpL9OXMyYJt"
   ],
-  "parallel_relay": 3
+  "parallel_relay": 3,
 }
 ```
 
