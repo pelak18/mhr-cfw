@@ -5,7 +5,11 @@ title: 'bug: '
 labels: bug
 ---
 
-**Version / OS / Python:**
+**Version:**
+
+**OS:**
+
+**Python version:**
 
 **What happened:**
 
