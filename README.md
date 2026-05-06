@@ -10,21 +10,14 @@
 
 ## How It Works
 
-1 - GAS Direct
-```
-Client -> Local Relay -> Google/CDN Front -> GAS (Google Apps Script) Relay -> Exit
-            |
-            +-> Shows www.google.com to network DPI filter
-```
-
-2 - GAS + Cloudflare Worker Exit
+1 - GAS + Cloudflare Worker Exit
 ```
 Client -> Local Relay -> Google/CDN Front -> GAS (Google Apps Script) Relay -> Cloudflare Worker -> Exit
             |
             +-> Shows www.google.com to network DPI filter
 ```
 
-3 - GAS + Cloudflare Worker Middle + Self-Hosted Upstream Forwarder Relay Exit
+2 - GAS + Cloudflare Worker Middle + Self-Hosted Upstream Forwarder Relay Exit
 ```
 Client -> Local Relay -> Google/CDN Front -> GAS (Google Apps Script) Relay -> Cloudflare Worker -> Self-Hosted Upstream Forwarder -> Exit
             |
