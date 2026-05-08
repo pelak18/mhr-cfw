@@ -1,4 +1,6 @@
-# MHR-CFW - MITM Domain-Fronted HTTP Relay + Cloudflare Worker Exit
+# MHR-CFW
+
+### MITM Domain-Fronted HTTP Relay + Cloudflare Worker Exit
 
 [![GitHub](https://img.shields.io/badge/GitHub-MHR_CFW-red?logo=github)](https://github.com/denuitt1/mhr-cfw)
 
@@ -181,7 +183,7 @@ Browse `https://httpbin.org/ip` through the proxy — you should see the **VPS's
 
 ## Disclaimer
 
-`mhr-cfw` is provided for educational, testing, and research purposes only.
+`MHR-CFW` is provided for educational, testing, and research purposes only.
 
 - **Provided without warranty:** This software is provided "AS IS", without express or implied warranty, including merchantability, fitness for a particular purpose, and non-infringement.
 - **Limitation of liability:** The developers and contributors are not responsible for any direct, indirect, incidental, consequential, or other damages resulting from the use of this project or the inability to use it.
