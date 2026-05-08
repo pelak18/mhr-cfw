@@ -192,5 +192,11 @@ Browse `https://httpbin.org/ip` through the proxy — you should see the **VPS's
 
 ---
 
-## Sources for this project
-- https://github.com/masterking32/MasterHttpRelayVPN
+## Sources
+- This project is based on [MasterHttpRelayVPN](https://github.com/masterking32/MasterHttpRelayVPN)
+
+---
+
+## License
+
+[MIT](LICENSE)
