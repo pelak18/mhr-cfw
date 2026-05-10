@@ -105,7 +105,7 @@ function _buildWorkerPayload(req) {
     }
   }
 
-  var out = {
+  return {
     u: req.u,
     m: (req.m || "GET").toUpperCase(),
     h: headers,
@@ -113,8 +113,6 @@ function _buildWorkerPayload(req) {
     ct: req.ct || null,
     r: req.r !== false
   };
-  if (typeof req.f === "number") out.f = req.f;
-  return out;
 }
 
 function doGet(e) {
