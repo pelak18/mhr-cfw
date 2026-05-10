@@ -13,7 +13,7 @@
 [![Watch the video](https://img.youtube.com/vi/L3lJZrAqqUQ/maxresdefault.jpg)](https://youtu.be/L3lJZrAqqUQ)
 
 - لینک یوتیوب: https://youtu.be/L3lJZrAqqUQ
-- لینک داخلی دانلود ویدیو: https://nc.thearthur.ir/s/YaCp4zAzepHJKi2
+- لینک داخلی دانلود ویدیو: https://cdn.vayrex.ir/vasls/8440130/1777611424961-86c092e3-mhrv-cfw.mp4
 
 ---
 

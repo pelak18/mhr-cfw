@@ -264,6 +264,11 @@ Browse `https://httpbin.org/ip` through the proxy — you should see the **VPS's
 
 ---
 
+## Contributors
+- Special thanks to [onlymaj](https://github.com/onlymaj)
+
+---
+
 ## Sources
 - This project is based on [MasterHttpRelayVPN](https://github.com/masterking32/MasterHttpRelayVPN)
 
