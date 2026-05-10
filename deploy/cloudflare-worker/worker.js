@@ -13,7 +13,7 @@ export default {
                 return json({ e: "loop detected" }, 508);
             }
 
-            if (request.method == "GET") {
+            if (request.method === "GET") {
                 return json({ e: "Relay is Active." }, 200);
             }
 
@@ -64,8 +64,7 @@ export default {
             };
 
             if (req.b) {
-                const binary = Uint8Array.from(atob(req.b), c => c.charCodeAt(0));
-                fetchOptions.body = binary;
+                fetchOptions.body = Uint8Array.from(atob(req.b), c => c.charCodeAt(0));
             }
 
             const resp = await fetch(targetUrl.toString(), fetchOptions);
