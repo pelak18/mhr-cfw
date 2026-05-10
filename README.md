@@ -207,6 +207,11 @@ Leave the list empty (or remove the key) to keep the historical "forward everyth
 
 ---
 
+## Contributors
+- Special thanks to [onlymaj](https://github.com/onlymaj)
+
+---
+
 ## Sources
 - This project is based on [MasterHttpRelayVPN](https://github.com/masterking32/MasterHttpRelayVPN)
 
