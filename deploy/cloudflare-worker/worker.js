@@ -38,9 +38,7 @@ export default {
             }
 
             const upstreamUrl = (env && env.UPSTREAM_FORWARDER_URL) || "";
-            // f === 1: forward; f === 0: skip; missing: legacy client → forward (compat).
-            const wantForward = (req.f === 1) || (req.f === undefined);
-            if (upstreamUrl && wantForward) {
+            if (upstreamUrl) {
                 const upstreamResp = await forwardViaUpstream(req, env, upstreamUrl);
                 if (upstreamResp) return upstreamResp;
                 // fall through to direct fetch only when fail-mode is open

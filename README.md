@@ -179,19 +179,6 @@ Browse `https://httpbin.org/ip` through the proxy — you should see the **VPS's
 
 > The forwarder must require auth. Without `AUTH_KEY` it refuses to start. Anyone with the URL and key can use it as a relay, so keep both secret.
 
-### 4. Scope the forwarder to specific hosts (optional)
-
-By default every request the Worker handles routes through the forwarder, so unrelated traffic also burns VPS bandwidth. To send only the sites that need a stable exit IP through the VPS, list them in `forwarder_hosts` in `config.json` — same syntax as `bypass_hosts` (exact hostname or `.suffix`). Anything not matched falls back to direct `fetch()` on the Worker.
-
-```json
-"forwarder_hosts": [
-    "example.com",
-    ".cf-protected-suffix"
-]
-```
-
-Leave the list empty (or remove the key) to keep the historical "forward everything" behavior.
-
 ---
 
 ## Disclaimer

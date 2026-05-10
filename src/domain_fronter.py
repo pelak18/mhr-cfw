@@ -150,10 +150,6 @@ class DomainFronter:
             minimum=1024,
         )
 
-        self._forwarder_hosts = self._load_host_rules(
-            config.get("forwarder_hosts", [])
-        )
-
         # Connection pool — TTL-based, pre-warmed, with concurrency control
         self._pool: list[tuple[asyncio.StreamReader, asyncio.StreamWriter, float]] = []
         self._pool_lock = asyncio.Lock()
@@ -227,33 +223,6 @@ class DomainFronter:
         except (TypeError, ValueError):
             value = default
         return max(minimum, value)
-
-    @staticmethod
-    def _load_host_rules(raw) -> tuple[set[str], tuple[str, ...]]:
-        """Parse host strings into (exact_set, suffix_tuple). Mirrors ProxyServer._load_host_rules."""
-        exact: set[str] = set()
-        suffixes: list[str] = []
-        for item in raw or []:
-            h = str(item).strip().lower().rstrip(".")
-            if not h:
-                continue
-            if h.startswith("."):
-                suffixes.append(h)
-            else:
-                exact.add(h)
-        return exact, tuple(suffixes)
-
-    @staticmethod
-    def _host_matches_rules(host: str,
-                            rules: tuple[set[str], tuple[str, ...]]) -> bool:
-        exact, suffixes = rules
-        h = host.lower().rstrip(".")
-        if h in exact:
-            return True
-        for s in suffixes:
-            if h.endswith(s):
-                return True
-        return False
 
     def _ssl_ctx(self) -> ssl.SSLContext:
         ctx = ssl.create_default_context()
@@ -1546,13 +1515,6 @@ class DomainFronter:
             ct = headers.get("Content-Type") or headers.get("content-type")
             if ct:
                 payload["ct"] = ct
-        # Only emit 'f' when scoped; Worker treats missing 'f' as forward (legacy compat).
-        exact, suffixes = self._forwarder_hosts
-        if exact or suffixes:
-            host = urlparse(url).hostname or ""
-            payload["f"] = 1 if self._host_matches_rules(
-                host, self._forwarder_hosts
-            ) else 0
         return payload
 
     @classmethod
