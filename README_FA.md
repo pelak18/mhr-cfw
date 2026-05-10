@@ -453,6 +453,77 @@ Port     : 1080
 
 ---
 
+
+## راهنماهای تکمیلی (اختیاری)
+ 
+#### استفاده از پروکسی در ماشین مجازی
+ 
+وقتی یک ماشین مجازی (VM) اجرا می‌کنید، در یک محیط شبکه‌ای ایزوله نسبت به سیستم هاست قرار می‌گیرد. به همین دلیل، VM به طور پیش‌فرض نمی‌تواند به سرویس‌هایی که روی `localhost` سیستم هاست اجرا می‌شوند دسترسی داشته باشد — از جمله این پروکسی.
+ 
+برای حل این مشکل، باید IP گیت‌وی‌ای که هایپروایزر به هاست اختصاص می‌دهد را پیدا کنید و به جای `localhost` از آن استفاده کنید.
+ 
+**مثال: VirtualBox (حالت NAT)**
+ 
+در این حالت، سیستم هاست همیشه از داخل VM از طریق آدرس `10.0.2.2` در دسترس است. پروکسی را اینطور تنظیم کنید:
+ 
+```bash
+export http_proxy="http://10.0.2.2:8085"
+export https_proxy="http://10.0.2.2:8085"
+export all_proxy="socks5://10.0.2.2:8085"
+```
+ 
+برای دائمی شدن، این خطوط را به `bashrc.` اضافه کرده و `source ~/.bashrc` را اجرا کنید.
+ 
+از آنجایی که این پروکسی SSL Inspection انجام می‌دهد، ممکن است با خطای certificate مواجه شوید. برای رفع آن، فایل `ca.crt` موجود در پروژه را نصب کنید:
+ 
+```bash
+sudo cp ca.crt /usr/local/share/ca-certificates/ && sudo update-ca-certificates
+```
+ 
+---
+ 
+#### اشتراک‌گذاری پروکسی در شبکه محلی (مثلاً گوشی موبایل)
+ 
+می‌توانید از این پروکسی روی گوشی یا هر دستگاه دیگری در همان شبکه استفاده کنید — بدون نیاز به نرم‌افزار اضافی.
+ 
+**۱. پیدا کردن IP سیستم هاست**
+ 
+```bash
+# Windows
+ipconfig
+ 
+# Linux / macOS
+ip addr
+```
+ 
+آدرس IP سیستمی که به مودم وصل است را پیدا کنید (مثلاً `192.168.1.8`).
+ 
+**۲. Port Forward (فقط ویندوز، اگر سرویس روی localhost اجرا می‌شود)**
+ 
+CMD را به عنوان Administrator اجرا کنید:
+ 
+```cmd
+netsh interface portproxy add v4tov4 listenaddress=192.168.1.8 listenport=8085 connectaddress=127.0.0.1 connectport=8085
+netsh advfirewall firewall add rule name="Proxy 8085" dir=in action=allow protocol=TCP localport=8085
+```
+ 
+**۳. تنظیم پروکسی روی گوشی**
+ 
+گوشی را به همان Wi-Fi وصل کنید، سپس پروکسی را به صورت دستی تنظیم کنید:
+- **Host:** IP سیستم هاست (مثلاً `192.168.1.8`)
+- **Port:** `8085`
+
+
+- Android: **Settings → Wi-Fi → Modify → Proxy → Manual**  
+- iPhone: **Settings → Wi-Fi → (شبکه) → HTTP Proxy → Manual**
+ 
+**۴. نصب CA Certificate**
+ 
+فایل `ca.crt` را به گوشی منتقل کنید، سپس:
+ 
+- **Android:** Settings → Security → Install a certificate → CA certificate
+- **iPhone:** (باز کردن فایل) → Settings → General → VPN & Device Management → Install → (فعال سازی) → General → About → Certificate Trust Settings
+
 ## اختیاری — IP خروجی پایدار با Upstream Forwarder
 
 سایت‌هایی که از CAPTCHA استفاده می‌کنند (Cloudflare Turnstile، reCAPTCHA، hCaptcha) توکن حل‌شده را به IP بازکننده‌ی چالش گره می‌زنند. Cloudflare Worker در هر درخواست از IP متفاوتی خروج می‌گیرد، بنابراین حتی پس از حل CAPTCHA، تأیید سمت سرور رد می‌شود. این افزونه‌ی اختیاری به Worker اجازه می‌دهد همه‌ی `fetch()` ها را از طریق یک سرور Node کوچک روی VPS شما (با IP ثابت) عبور دهد — به‌طوری که سایت مقصد همیشه یک IP خروجی ثابت ببیند.

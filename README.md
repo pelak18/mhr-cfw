@@ -104,6 +104,76 @@ Open [ipleak.net](https://ipleak.net) in your browser, you should see your ip ad
 <img width="1454" height="869" alt="image" src="https://github.com/user-attachments/assets/dfd3316d-69b6-4b0e-b564-fdb055dbdafd" />
 
 
+### 7 - Additional Usage Guides
+ 
+#### Using the Proxy Inside a Virtual Machine
+ 
+When you run a virtual machine (VM), it operates in an isolated network environment separate from the host. By default, the VM cannot directly access services running on `localhost` of the host machine — including this proxy.
+ 
+To fix this, you need to find the gateway IP that your hypervisor assigns to the host, then use it instead of `localhost` when configuring the proxy inside the VM.
+ 
+**Example: VirtualBox (NAT mode)**
+ 
+The host is always reachable from inside the VM at `10.0.2.2`. Set the proxy:
+ 
+```bash
+export http_proxy="http://10.0.2.2:8085"
+export https_proxy="http://10.0.2.2:8085"
+export all_proxy="socks5://10.0.2.2:8085"
+```
+ 
+To make this permanent, add the lines above to `~/.bashrc` and run `source ~/.bashrc`.
+ 
+Since this proxy performs SSL inspection, you may see certificate errors. Install the included `ca.crt` to fix them:
+ 
+```bash
+sudo cp ca.crt /usr/local/share/ca-certificates/ && sudo update-ca-certificates
+```
+ 
+---
+ 
+#### Sharing the Proxy Over a Local Network (e.g. Mobile Devices)
+ 
+You can use this proxy on your phone or any other device on the same network — no extra software needed.
+ 
+**1. Find your host IP**
+ 
+```bash
+# Windows
+ipconfig
+ 
+# Linux / macOS
+ip addr
+```
+ 
+Look for the IP of the adapter connected to your router (e.g. `192.168.1.8`).
+ 
+**2. Forward the port (Windows only, if the service is bound to localhost)**
+ 
+Run `CMD` as Administrator:
+ 
+```cmd
+netsh interface portproxy add v4tov4 listenaddress=192.168.1.8 listenport=8085 connectaddress=127.0.0.1 connectport=8085
+netsh advfirewall firewall add rule name="Proxy 8085" dir=in action=allow protocol=TCP localport=8085
+```
+ 
+**3. Configure proxy on your phone**
+ 
+Connect your phone to the same Wi-Fi, then set the proxy manually:
+- **Host:** your host IP (e.g. `192.168.1.8`)
+- **Port:** `8085`
+ 
+On Android: **Settings → Wi-Fi → Modify → Proxy → Manual**  
+On iPhone: **Settings → Wi-Fi → (network) → HTTP Proxy → Manual**
+ 
+**4. Install the CA certificate**
+ 
+Transfer `ca.crt` to your phone, then:
+ 
+- **Android:** Settings → Security → Install a certificate → CA certificate
+- **iPhone:** Open the file → install profile → Settings → General → About → Certificate Trust Settings → enable it
+
+
 ---
 
 ## Optional: Stable Exit IP via Upstream Forwarder
